@@ -96,18 +96,17 @@ elif choice == "Video":
                 
         elif file_option == "Capture from camera":
             if text_input != "":
-                video_player = st.empty()
-                cap = cv2.VideoCapture(0)
+                run = st.checkbox('Run')
+                FRAME_WINDOW = st.image([])
+                camera = cv2.VideoCapture(0)
+
                 st.markdown(f"<center>{text_input}</center>", unsafe_allow_html=True)
 
-                while True:
-                    ret, frame = cap.read()  
-                    if not ret:
-                        break
-                    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                    video_player.image(rgb_frame, channels="RGB")
-                    
-
-                cap.release()
+                while run:
+                    _, frame = camera.read()
+                    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                    FRAME_WINDOW.image(frame)
+            else:
+                st.write('Stopped')
             
 

@@ -11,12 +11,24 @@ def local_css(file_name):
 
 local_css("style.css")
 
+# ---- BACKGROUND IMAGE ----
+
+page_bg_img = '''
+<style>
+body {
+background-image: url("https://images.unsplash.com/photo-1542281286-9e0a16bb7366");
+background-size: cover;
+}
+</style>
+'''
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 
 # ---- HEADER SECTION ----
 with st.container():
     st.subheader("Hi, I am Kaushik :snowflake:")
     st.title("About Me")
-    st.write("I am a begineer in python.")
+    st.write("I am a beginner in python.")
     st.write("[Hear My Favourite Song >](https://youtu.be/1j2YXCvTtTs)")
 
 
@@ -35,9 +47,6 @@ with st.container():
                 """
         )
         st.write("[My Favourite Video >](https://youtu.be/jG7dSXcfVqE)")
-
-
-        
 
 
 # ---- sidebar ----
@@ -79,12 +88,13 @@ elif choice == "Video":
     file_option = st.radio("Select an option", ["Select local file", "Capture from camera"])
     st.subheader("Text Input")
     st.write("Please enter the caption first")
-    text_input = st.text_input("Enter your caption")
+    
 
     #new container
     with st.container():
         image_column, right_column = st.columns((1,2))
         if file_option == "Select local file":
+            text_input = st.text_input("Enter your caption")
             with st.expander("Click here to collapse", expanded=True):
                 video_file = st.file_uploader("Upload a video", type=["mp4", "mov"])
                 if video_file is not None and text_input != "":
@@ -95,18 +105,4 @@ elif choice == "Video":
 
                 
         elif file_option == "Capture from camera":
-            if text_input != "":
-                run = st.checkbox('Run')
-                FRAME_WINDOW = st.image([])
-                camera = cv2.VideoCapture(0)
-
-                st.markdown(f"<center>{text_input}</center>", unsafe_allow_html=True)
-
-                while run:
-                    _, frame = camera.read()
-                    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                    FRAME_WINDOW.image(frame)
-            else:
-                st.write('Stopped')
-            
-
+            st.subheader(':blue[_This feature is coming soon._:sunglasses:]')

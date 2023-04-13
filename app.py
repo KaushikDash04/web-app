@@ -1,18 +1,8 @@
 import streamlit as st
 from PIL import Image
 import cv2
-from streamlit_lottie import st_lottie
-import requests
-
-
 
 st.set_page_config(page_title="My Page", page_icon=":no_smoking::underage:", layout="wide")
-
-def load_lottieurl(url):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
 
 # ---- LOAD LOCAL CSS ----
 def local_css(file_name):
@@ -20,8 +10,6 @@ def local_css(file_name):
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 local_css("style.css")
-
-lottie_coding = load_lottieurl("https://assets7.lottiefiles.com/packages/lf20_ZsoSL7RsIe.json")
 
 
 
@@ -48,8 +36,6 @@ with st.container():
                 """
         )
         st.write("[My Favourite Video >](https://youtu.be/jG7dSXcfVqE)")
-    with right_column:
-        st_lottie(lottie_coding, height=300, key="cat")
 
 
 # ---- sidebar ----
